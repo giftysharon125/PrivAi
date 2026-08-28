@@ -1,0 +1,25 @@
+{
+  "name": "privai",
+  "version": "1.0.0",
+  "description": "PrivAI - Prove your eligibility without exposing everything.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "node server/server.js",
+    "client": "npm --prefix client run dev",
+    "dev": "npx concurrently \"npm run server\" \"npm run client\"",
+    "test": "npm --prefix server test"
+  },
+  "keywords": [
+    "privacy",
+    "ai",
+    "eligibility-verification",
+    "zero-knowledge",
+    "gemini"
+  ],
+  "author": "PrivAI Team",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  }
+}

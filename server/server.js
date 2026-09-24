@@ -45,7 +45,7 @@ app.use('/api/eligibility', require('./routes/eligibilityRoutes'));
 // Global Error Handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 // Connect to Database & Start Express Server
 connectDB().then(() => {

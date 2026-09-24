@@ -1,0 +1,55 @@
+// PrivAI Midnight Compact Smart Contract Specification
+// Language Version: Midnight Compact v0.20.0
+// Description: Zero-Knowledge Student Internship Eligibility Verification Contract
+
+pragma language_version >= 0.20.0;
+
+import CompactStandardLibrary;
+
+contract PrivAIEligibilityContract {
+    // Public state stored on the Midnight privacy ledger
+    export ledger totalVerifiedClaims: Counter;
+    export ledger verifierPublicKey: Bytes<32>;
+
+    // Private Student Witness Structure (kept locally on student device)
+    struct StudentPrivateWitness {
+        studentStatus: Boolean,
+        branchCode: Bytes<32>,     // e.g. "CSE"
+        academicYear: Uint<8>,      // e.g. 3
+        cgpaScoreX100: Uint<16>     // e.g. 820 for 8.20
+    }
+
+    // Public ZK Proof Commitment
+    struct EligibilityProofCommitment {
+        witnessHash: Bytes<32>,
+        timestamp: Uint<64>,
+        isValid: Boolean
+    }
+
+    // Zero-Knowledge Circuit Assertion Function
+    // Evaluates private witness fields without revealing their raw values to the public ledger
+    export circuit proveEligibilityWitness(witness: StudentPrivateWitness): EligibilityProofCommitment {
+        // Enforce eligibility criteria inside the zero-knowledge circuit
+        assert witness.studentStatus == true "Student status must be active";
+        assert witness.branchCode == "CSE" "Branch must be Computer Science & Engineering";
+        assert witness.academicYear >= 3 "Academic year must be 3 or above";
+        assert witness.cgpaScoreX100 >= 700 "CGPA must be 7.00 or above";
+
+        // Increment public verification counter on ledger
+        totalVerifiedClaims.increment(1);
+
+        // Generate witness commitment hash
+        const commitmentHash = hashWitness(witness);
+
+        return EligibilityProofCommitment {
+            witnessHash: commitmentHash,
+            timestamp: currentTime(),
+            isValid: true
+        };
+    }
+
+    // Helper method to hash private witness data
+    circuit hashWitness(witness: StudentPrivateWitness): Bytes<32> {
+        return sha256(witness.branchCode, witness.academicYear, witness.cgpaScoreX100);
+    }
+}

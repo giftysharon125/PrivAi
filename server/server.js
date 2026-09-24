@@ -41,6 +41,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/documents', require('./routes/documentRoutes'));
 app.use('/api/analysis', require('./routes/analysisRoutes'));
 app.use('/api/eligibility', require('./routes/eligibilityRoutes'));
+app.use('/api/midnight', require('./routes/midnightRoutes'));
 
 // Global Error Handler
 app.use(errorHandler);

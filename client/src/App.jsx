@@ -12,6 +12,7 @@ import AnalysisPage from './pages/AnalysisPage';
 import EligibilityResultPage from './pages/EligibilityResultPage';
 import HistoryPage from './pages/HistoryPage';
 import ProfilePage from './pages/ProfilePage';
+import MidnightZkPage from './pages/MidnightZkPage';
 
 // Protected Route Guard
 const ProtectedRoute = ({ children }) => {
@@ -88,6 +89,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/midnight-zk"
+              element={
+                <ProtectedRoute>
+                  <MidnightZkPage />
                 </ProtectedRoute>
               }
             />

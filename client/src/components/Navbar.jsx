@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ShieldCheck, User, LogOut, FileText, CheckCircle2, History, LayoutDashboard, Menu, X } from 'lucide-react';
+import { ShieldCheck, User, LogOut, FileText, CheckCircle2, History, LayoutDashboard, Menu, X, Zap } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
@@ -74,6 +74,18 @@ const Navbar = () => {
                 >
                   <History className="w-4 h-4" />
                   <span>History</span>
+                </Link>
+
+                <Link
+                  to="/midnight-zk"
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive('/midnight-zk')
+                      ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/40'
+                      : 'text-indigo-400 hover:text-indigo-200 hover:bg-indigo-950/40'
+                  }`}
+                >
+                  <Zap className="w-4 h-4 text-cyan-400" />
+                  <span>Midnight ZK</span>
                 </Link>
 
                 <Link

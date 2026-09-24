@@ -220,13 +220,22 @@ const EligibilityResultPage = () => {
           <span>Verify Another Document</span>
         </Link>
 
-        <Link
-          to="/history"
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg flex items-center justify-center space-x-2 transition-all"
-        >
-          <span>View Verification History</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+        <div className="flex items-center space-x-3 w-full sm:w-auto">
+          <Link
+            to={`/midnight-zk?checkId=${id}`}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 transition-all hover:scale-105"
+          >
+            <span>⚡ Generate Midnight ZK Proof</span>
+          </Link>
+
+          <Link
+            to="/history"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg flex items-center justify-center space-x-2 transition-all"
+          >
+            <span>View History</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
 
     </div>
